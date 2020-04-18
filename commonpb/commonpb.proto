@@ -11,13 +11,13 @@ package commonpb;
 service Auth {
 
     // isUserValid(username, password string) bool
-    rpc EnsureLoggedIn (Request) returns (BoolReply) {}  // <- might not be needed as a gRPC
+    rpc EnsureLoggedIn (BoolRequest) returns (BoolReply) {}
 
     // registerNewUser(username, password string) (*user, error)
-    rpc EnsureNotLoggedIn (Request) returns (BoolReply) {}  // <- might not be needed as a gRPC
+    rpc EnsureNotLoggedIn (BoolRequest) returns (BoolReply) {}
 
     // isUsernameAvailable(username string) bool
-    rpc SetUserStatus (Request) returns (BoolReply) {}    // <- might not be needed as a gRPC
+    rpc SetUserStatus (Request) returns (BoolReply) {}
 
 }
 
@@ -25,16 +25,16 @@ service Backend {
 
     // user
     // isUserValid(username, password string) bool
-    rpc IsUserValid (AccountRequest) returns (BoolReply) {}  // <- might not be needed as a gRPC
+    rpc IsUserValid (AccountRequest) returns (BoolReply) {}
 
     // registerNewUser(username, password string) (*user, error)
-    rpc RegisterNewUser (AccountRequest) returns (BoolReply) {}  // <- might not be needed as a gRPC
+    rpc RegisterNewUser (AccountRequest) returns (BoolReply) {}
 
     // isUsernameAvailable(username string) bool
-    rpc isUsernameAvailable (UsernameRequest) returns (BoolReply) {}    // <- might not be needed as a gRPC
+    rpc isUsernameAvailable (UsernameRequest) returns (BoolReply) {}
 
     // isFollowed(username string) (bool, int, error)
-    rpc IsFollowed (FollowRequest) returns (IsFollowedReply) {}   // <- might not be needed as a gRPC
+    rpc IsFollowed (FollowRequest) returns (IsFollowedReply) {}
 
     // addFollow(userToFollow string) error
     rpc AddFollow (FollowRequest) returns (Reply) {}
@@ -76,6 +76,10 @@ message Article {
 // Requests
 message Request {
     string message = 1;
+}
+
+message BoolRequest {
+    bool request = 1;
 }
 
 message ArticleIDRequest {
