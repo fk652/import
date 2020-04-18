@@ -8,16 +8,22 @@ option go_package = ".;commonpb";
 
 package commonpb;
 
+service Auth {
+
+    // isUserValid(username, password string) bool
+    rpc EnsureLoggedIn (Request) returns (BoolReply) {}  // <- might not be needed as a gRPC
+
+    // registerNewUser(username, password string) (*user, error)
+    rpc EnsureNotLoggedIn (Request) returns (BoolReply) {}  // <- might not be needed as a gRPC
+
+    // isUsernameAvailable(username string) bool
+    rpc SetUserStatus (Request) returns (BoolReply) {}    // <- might not be needed as a gRPC
+
+}
+
 service Backend {
 
     // user
-    // // setCurrentUser(username string) error
-    // rpc setCurrentUser (UsernameRequest) returns (Reply) {}  // <- might not be needed as a gRPC
-
-    // // getCurrentUser() (string, error)
-    // rpc getCurrentUser (Request) returns (UsernameReply) {}  // <- might not be needed as a gRPC
-    // // consider changing set/get user to a cookie variable
-
     // isUserValid(username, password string) bool
     rpc IsUserValid (AccountRequest) returns (BoolReply) {}  // <- might not be needed as a gRPC
 
